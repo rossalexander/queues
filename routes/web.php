@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\ReconcileAccount;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $user = App\Models\User::first();
 
-    dispatch(new \App\Jobs\ReconcileAccount($user));
-
+    ReconcileAccount::dispatch($user);
     return 'Finished';
-
 });
