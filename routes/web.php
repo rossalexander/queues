@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    \App\Jobs\SendWelcomeEmail::dispatch();
 
-    return view('welcome');
+    dispatch(function () {
+        logger('I have to tell you about the future.');
+    })->delay(now()->addMinutes(2));
+
+    return 'Finished';
+
 });
