@@ -14,10 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $user = App\Models\User::first();
 
-    dispatch(function () {
-        logger('I have to tell you about the future.');
-    })->delay(now()->addMinutes(2));
+    dispatch(new \App\Jobs\ReconcileAccount($user));
 
     return 'Finished';
 
